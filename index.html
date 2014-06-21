@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<!--
+Minecraft Server Status Checker V2.0
+
+Copyright (c) 2014 Jeremy Lam (JLChnToZ)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+-->
+<HTML>
+<Head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Minecraft 伺服器狀態查詢 V2.0</title>
+<!--[if gt IE 7]><!-->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/pace/0.4.17/pace.js"></script>
+<!--<![endif]-->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="res/skin.js"></script>
+<script type="text/javascript" src="res/mccolor.js"></script>
+<script type="text/javascript">
+$(function() {
+  var mm = [["legacy_ping", "ping"], ["full_query", "basic_query"]];
+  var done = 0;
+  
+  $("#requestform").submit(function(e) {
+    e.preventDefault();
+    var that = this;
+    $("#querybutton").button('loading');
+    var called = false;
+    $(".info").fadeOut("slow", function() {
+      if(!called) called = true; else return;
+      $(".val, #players, #pluginscontent0, #pluginscontent1, #pluginscontent2").empty();
+      $("#servericon, .nfo, #infoplayers, #pluginscontent0, #pluginscontent1, #pluginscontent2").hide();
+      $("#noplugins, #noplayers").show();
+      done = 0;
+      tryRequest($(that).serialize(), 0, 0);
+      setTimeout(function() { tryRequest($(that).serialize(), 1, 0); }, 2500);
+    });
+  });
+  
+  function tryRequest(form, mode, trial) {
+    $.getJSON("json.php", form + "&mode=" + mm[mode][trial], function(x, h, r) {
+      if(x.err || x == false)
+        return;
+      $(".info").each(function(i) {
+        $(this).delay(i * 250).fadeIn("slow");
+      });
+      $("#infotitle").text((x.IP ? x.IP : $("#id_host").val()) + ":" + $("#id_port").val());
+      showcontent("#motd", x.motd, 0);
+      showcontent("#sversion", x.server_version, -1);
+      showcontent("#latency", x.latency, -1);
+      showcontent("#map", x.map, -1);
+      showcontent("#gametype", x.gametype, -1);
+      if(x.plugins && x.plugins.length > 0) {
+        $("#noplugins").hide();
+        $("#pluginscontent0, #pluginscontent1, #pluginscontent2").show();
+        var arr = x.plugins.split(";");
+        for(var i = 0; i < arr.length; i++)
+          $("#pluginscontent" + (i % 3)).append($("<li></li>").text(arr[i]).hide().delay(i * 100).fadeIn("slow"));
+      }
+      if(x.icon && x.icon.length > 0)
+        $("#servericon").attr("src", x.icon).fadeIn("slow");
+      if(x.player_count || x.player_max || x.player_count === 0 || x.player_max === 0) {
+        $("#infoplayers").show();
+        $("#pmax").toggle(x.player_count  >= x.player_max);
+        $("#pcount").toggle(x.player_count < x.player_max).text(x.player_count ? x.player_count : '?');
+        $("#pcountmax").text(x.player_max ? x.player_max : '?');
+      }
+      if(x.players && x.players.length > 0) {
+        $("#noplayers").hide();
+        $("#players").fadeOut("fast").empty().fadeIn("fast", function() {
+          for(var i = 0; i < x.players.length; i++) {
+            var skin = $("<div></div>").addClass("mc-skin").attr("data-minecraft-username", x.players[i]);
+            var name = $("<span></span>").addClass("label label-default").text(x.players[i]).minecraftFormat(15);
+            $("#players").append($("<div></div>").addClass("player").append(skin).append(name).hide().delay(i * 100).fadeIn("slow"));
+          }
+          $(".mc-skin").minecraftSkin({
+            scale: 2,
+            hat: true
+          });
+        });
+      }
+    }).complete(function(x, s) {
+      if(trial + 1 < mm[mode].length)
+        setTimeout(function() {
+          tryRequest(form, mode, trial + 1);
+        }, 5000);
+      else
+        callDone();
+    });
+  }
+  
+  function callDone() {
+    done++;
+    if(done >= mm.length)
+      $("#querybutton").button('reset');
+  }
+  
+  function showcontent(id, content, formatColor) {
+    var $target = $(id);
+    var $child = $target.children(".val");
+    if(content && content.toString().length > 0) {
+      $target.show();
+      $child.text(content);
+      if(formatColor >= 0)
+        $child.minecraftFormat(formatColor);
+    }
+    return $child;
+  }
+});
+</script>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" />
+<link rel="stylesheet" href="res/pace.css" />
+<style type="text/css">
+body {
+  background-image: url(res/bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+#players {
+  text-align: center;
+}
+
+.scratch {
+  display: none;
+}
+
+.mc-skin {
+  height: 100px;
+}
+
+.player {
+  display: inline-block;
+  text-align: center;
+  width: 10%;
+  height: 130px;
+  padding: 5px;
+  word-wrap: break-word;
+  vertical-align: top;
+}
+
+#servericon {
+  display: none;
+  float: left;
+  margin: 5px;
+}
+
+#noplugins, #noplayers {
+  text-align: center;
+}
+
+#noplugins, #pmax, #infoplayers, .info {
+  display: none;
+}
+
+.hkcdc_logo {
+  background-image: url(res/hkcdc.png);
+  display: inline-block;
+  width: 87px;
+  height: 24px;
+  padding-top: -12px;
+}
+</style>
+</Head>
+<Body role="document">
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div class="container-fluid">
+<a class="navbar-brand" href="#">Minecraft 伺服器狀態查詢 V2.0</a>
+<div class="collapse navbar-collapse" id="navbar1">
+<ul class="nav navbar-nav">
+<li><a href="http://minecraft.net/">Minecraft 官方網站</a></li>
+<li><a href="http://hkcdc.org/">HKCDC</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="navbar navbar-inverse" role="navigation"> </div>
+</div>
+<div class="container" role="main">
+<form id="requestform">
+<div class="row">
+<div class="col-xs-3"><label class="control-label" for="id_host">網址 / IP 地址</label></div>
+<div class="col-xs-2"><label class="control-label" for="id_port">連接埠</label></div></div>
+<div class="row">
+<div class="col-xs-3">
+<input class="form-control" type="text" name="host" id="id_host" placeholder="192.168.0.1/server.example.com" /></div>
+<div class="col-xs-2">
+<input class="form-control" type="number" name="port" id="id_port" value="25565" placeholder="25565" /></div>
+<div class="col-xs-1">
+<button class="btn btn-primary" type="submit" data-loading-text="請等等等等…" id="querybutton"><span class="glyphicon glyphicon-search"></span>
+立即查詢</button></div>
+</div>
+</form>
+<br />
+<div class="panel panel-primary info">
+<div class="panel-heading">
+<h3 class="panel-title"><span class="glyphicon glyphicon-info-sign"></span>
+<span id="infotitle">伺服器</span> 的資料</h3>
+</div>
+<div class="panel-body">
+<img id="servericon" alt="icon" />
+<div id="motd" class="nfo"><span class="val" style="background: #444"></span></div>
+<div id="sversion" class="nfo"><b>版本：</b><span class="val"></span></div>
+<div id="map" class="nfo"><b>地圖：</b><span class="val"></span></div>
+<div id="gametype" class="nfo"><b>遊戲模式：</b><span class="val"></span></div>
+<div id="latency" class="nfo"><b>延遲：</b><span class="val"></span>毫秒</div>
+</div>
+</div>
+
+<div class="panel panel-info info">
+<div class="panel-heading">
+<h3 class="panel-title"><span class="glyphicon glyphicon-user"></span>
+在線玩家<span id="infoplayers"> （<span class="text-danger" id="pmax">滿載</span><span id="pcount">?</span>，共<span id="pcountmax">?</span>）</span></h3>
+</div>
+<div class="panel-body">
+<div id="noplayers" class="text-danger">伺服器沒有提供任何玩家資料。</div>
+<div id="players"></div>
+</div>
+</div>
+
+<div class="panel panel-info info">
+<div class="panel-heading">
+<h3 class="panel-title"><span class="glyphicon glyphicon-cog"></span>
+插件列表</h3>
+</div>
+<div class="panel-body">
+<div id="noplugins" class="text-danger">伺服器沒有插件，或者沒有公開。</div>
+<div class="row">
+<div class="col-xs-4"><ul id="pluginscontent0"></ul></div>
+<div class="col-xs-4"><ul id="pluginscontent1"></ul></div>
+<div class="col-xs-4"><ul id="pluginscontent2"></ul></div>
+</div>
+</div>
+</div>
+</div>
+<hr />
+<footer role="contentinfo">
+<div class="container">
+<p><b>免責聲明：</b>本人並不保證這個查詢器的可用性。如果因為使用這個查詢器而構成任何直接或間接的損失，本人一概不負責。</p>
+<p>Minecraft 伺服器狀態查詢前端 V2.0 &copy; 2014 <a href="https://github.com/JLChnToZ">Jeremy Lam (JLChnToZ)</a>. Created with <span class="glyphicon glyphicon-heart"></span> in <a href="http://hkcdc.org/"><span class="hkcdc_logo"></span></a>. This page is is not affiliated with <a href="http://mojang.com/">Mojang AB</a>. Minecraft content and materials are trademarks and copyrights of Mojang AB or its licensors. All rights reserved.</p>
+</div>
+</footer>
+</Body>
+</HTML>
