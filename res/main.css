@@ -20,7 +20,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 body {
-  background-image: url(res/bg.png);
+  background-image: url(bg.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -64,7 +64,7 @@ body {
 }
 
 .hkcdc_logo {
-  background-image: url(res/hkcdc.png);
+  background-image: url(hkcdc.png);
   display: inline-block;
   width: 87px;
   height: 24px;
