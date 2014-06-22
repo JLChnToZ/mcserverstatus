@@ -19,17 +19,13 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
-var lang = new Lang('en');
-lang.dynamic('zh-Hant', './res/zh-tw.json');
-lang.dynamic('zh-Hans', './res/zh-cn.json');
-lang.dynamic('ja', './res/jp.json');
-lang.dynamic('ko', './res/ko.json');
 $(function() {
   var allmodes = [
     ["legacy_ping", "ping"],
     ["full_query", "basic_query"]
   ],
     done = 0,
+    lang = new Lang('en'),
     searchquery = location.search;
 
   function onSubmit(form, newstate) {
@@ -140,6 +136,11 @@ $(function() {
     e.preventDefault();
     onSubmit($(this), true);
   });
+  
+  $(".changelang").click(function(e) {
+    e.preventDefault();
+    lang.change($(this).attr("href").substring(1));
+  });
 
   window.onpopstate = function(e) {
     autoload(e.state);
@@ -152,4 +153,9 @@ $(function() {
       port: q.port ? q.port : 25565
     }, 'request: ' + q.host + ':' + q.port, '?' + q.host + ':' + q.port);
   }
+  
+  lang.dynamic('zh-Hant', './res/zh-tw.json');
+  lang.dynamic('zh-Hans', './res/zh-cn.json');
+  lang.dynamic('ja', './res/jp.json');
+  lang.dynamic('ko', './res/ko.json');
 });
