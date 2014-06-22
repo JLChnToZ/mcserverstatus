@@ -1,0 +1,26 @@
+{
+	"token": {
+		"Minecraft Server Status Checker V2.0": "Minecraft 서버 상태 검사기 V2.0",
+		"Minecraft Official Site": "Minecraft 공식 사이트",
+		"URL / IP Address": "URL / IP 주소",
+		"Port": "포트",
+		"Please wait": "잠시 기다려주십시오...",
+		"Check": "체크",
+		"Server": "서버",
+		"Information": " 정보",
+		"Version:": "버전: ",
+		"Map:": "맵: ",
+		"Game mode:": "게임 모드: ",
+		"Latency:": "대기 시간: ",
+		"ms": "밀리 초",
+		"Online Players": "온라인 플레이어",
+		"Full": "가득",
+		", total": ", 총 용량",
+		"Server did not provide player info.": "플레이어 정보를 제공하지 않았다.",
+		"Plugin List": "플러그인 목록",
+		"Server did not provide plugins info, or no plugins installed.": "플러그인을 설치하지 않거나 정보가 공개되지 않았습니다.",
+		"Disclaimer:": "면책 조항: ",
+		"Use this at your own risk, I don't respond if you lose anything while you use it, even the computer get exploded. :)": "본인은 결코이 검색기의 가용성을 보장하지 않습니다. 만약이 검색기를 사용에 대한 모든 직접 인 또는 간접적 인 손실을 구성하여 본인은 모든 담당하지 않습니다."
+	},
+	"regex": []
+}

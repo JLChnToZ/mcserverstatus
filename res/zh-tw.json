@@ -1,0 +1,26 @@
+{
+	"token": {
+		"Minecraft Server Status Checker V2.0": "Minecraft 伺服器狀態查詢 V2.0",
+		"Minecraft Official Site": "Minecraft 官方網站",
+		"URL / IP Address": "網址 / IP 地址",
+		"Port": "連接埠",
+		"Please wait": "請等等等等…",
+		"Check": "立即查詢",
+		"Server": "伺服器",
+		"Information": " 的資料",
+		"Version: ": "版本：",
+		"Map: ": "地圖：",
+		"Game mode: ": "遊戲模式：",
+		"Latency: ": "延遲：",
+		"ms": "毫秒",
+		"Online Players": "在線玩家",
+		"Full": "滿載",
+		", total": "，共",
+		"Server did not provide player info.": "伺服器沒有提供任何玩家資料。",
+		"Plugin List": "插件列表",
+		"Server did not provide plugins info, or no plugins installed.": "伺服器沒有插件，或者沒有公開。",
+		"Disclaimer:": "免責聲明：",
+		"Use this at your own risk, I don't respond if you lose anything while you use it, even the computer get exploded. :)": "本人並不保證這個查詢器的可用性。如果因為使用這個查詢器而構成任何直接或間接的損失，本人一概不負責。"
+	},
+	"regex": []
+}

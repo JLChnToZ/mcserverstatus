@@ -1,0 +1,26 @@
+{
+	"token": {
+		"Minecraft Server Status Checker V2.0": "Minecraft 服务器状态查询 V2.0",
+		"Minecraft Official Site": "Minecraft 官方网站",
+		"URL / IP Address": "网址 / IP 地址",
+		"Port": "端口",
+		"Please wait": "请等等等等…",
+		"Check": "立即查询",
+		"Server": "服务器",
+		"Information": " 的资料",
+		"Version: ": "版本：",
+		"Map: ": "地图：",
+		"Game mode: ": "游戏模式：",
+		"Latency: ": "延迟：",
+		"ms": "毫秒",
+		"Online Players": "在线玩家",
+		"Full": "满载",
+		", total": "，共",
+		"Server did not provide player info.": "服务器没有提供任何玩家数据。",
+		"Plugin List": "插件列表",
+		"Server did not provide plugins info, or no plugins installed.": "服务器没有插件，或者没有公开。",
+		"Disclaimer:": "免责声明：",
+		"Use this at your own risk, I don't respond if you lose anything while you use it, even the computer get exploded. :)": "本人并不保证这个查询器的可用性。如果因为使用这个查询器而构成任何直接或间接的损失，本人一概不负责。"
+	},
+	"regex": []
+}

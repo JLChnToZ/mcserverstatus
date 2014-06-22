@@ -19,6 +19,11 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
+var lang = new Lang('en');
+lang.dynamic('zh-Hant', './res/zh-tw.json');
+lang.dynamic('zh-Hans', './res/zh-cn.json');
+lang.dynamic('ja', './res/jp.json');
+lang.dynamic('ko', './res/ko.json');
 $(function() {
   var allmodes = [
     ["legacy_ping", "ping"],
@@ -122,7 +127,7 @@ $(function() {
       var q = query.split(":");
       query = {
         host: q[0],
-        port: q[1]
+        port: q[1] ? q[1] : 25565
       };
     } else if (!query) return;
     $("#id_host").val(query['host']);
@@ -144,7 +149,7 @@ $(function() {
     var q = autoload(searchquery.substring(1));
     if(history.replaceState) history.replaceState({
       host: q.host,
-      port: q.port
+      port: q.port ? q.port : 25565
     }, 'request: ' + q.host + ':' + q.port, '?' + q.host + ':' + q.port);
   }
 });
