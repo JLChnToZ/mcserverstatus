@@ -43,7 +43,7 @@
   display: block;
   position: fixed;
   z-index: 2000;
-  top: 15px;
+  bottom: 15px;
   right: 15px;
   width: 14px;
   height: 14px;
