@@ -1,0 +1,13 @@
+{
+  "name": "mcserverstatus",
+  "version": "2.1",
+  "homepage": "https://github.com/JLChnToZ/mcserverstatus/",
+  "authors": [
+    "Jeremy Lam \"JLChnToZ\" <jlchntoz@hkcdc.org>"
+  ],
+  "description": "A lite and dirty Minecraft server status checker.",
+  "dependencies": {
+	"jquery-lang-js": "2.5.0",
+    "octicons": "2.0.0"
+  }
+}

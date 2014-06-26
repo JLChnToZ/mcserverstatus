@@ -154,8 +154,8 @@ $(function() {
     }, 'request: ' + q.host + ':' + q.port, '?' + q.host + ':' + q.port);
   }
   
-  lang.dynamic('zh-Hant', './res/zh-tw.json');
-  lang.dynamic('zh-Hans', './res/zh-cn.json');
-  lang.dynamic('ja', './res/jp.json');
-  lang.dynamic('ko', './res/ko.json');
+  lang.dynamic('zh-Hant', 'js/lang/zh-tw.json');
+  lang.dynamic('zh-Hans', 'js/lang/zh-cn.json');
+  lang.dynamic('ja', 'js/lang/jp.json');
+  lang.dynamic('ko', 'js/lang/ko.json');
 });
