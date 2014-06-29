@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-Minecraft Server Status Checker V2.1
+Minecraft Server Status Checker V2.2
 
 Copyright (c) 2014 Jeremy Lam (JLChnToZ)
 
@@ -26,12 +26,13 @@ THE SOFTWARE.
 <Head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title lang="en">Minecraft Server Status Checker V2.1</title>
+<title lang="en">Minecraft Server Status Checker V2.2</title>
 <!--[if gt IE 7]><!-->
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/pace/0.4.17/pace.js"></script>
 <!--<![endif]-->
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="bower_components/jquery-lang-js/js/jquery-lang.js"></script>
 <script type="text/javascript" src="js/skin.js"></script>
@@ -47,7 +48,7 @@ THE SOFTWARE.
 <Body role="document">
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 <div class="container-fluid">
-<a class="navbar-brand" href="#" lang="en">Minecraft Server Status Checker V2.1</a>
+<a class="navbar-brand" href="#" lang="en">Minecraft Server Status Checker V2.2</a>
 <div class="collapse navbar-collapse">
 <ul class="nav navbar-nav">
 <li><a href="http://minecraft.net/" lang="en">Minecraft Official Site</a></li>
@@ -58,10 +59,10 @@ THE SOFTWARE.
 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#language">Language <b class="caret"></b></a>
 <ul class="dropdown-menu">
 <li><a class="changelang" href="#en">English</a></li>
-<li><a class="changelang" href="#zh-Hant">繁體中文</a></li>
-<li><a class="changelang" href="#zh-Hans">简体中文</a></li>
-<li><a class="changelang" href="#ja">日本語</a></li>
-<li><a class="changelang" href="#ko">한국의</a></li>
+<li><a class="changelang" href="#zh-Hant" data-lang-path="js/lang/zh-tw.json">繁體中文</a></li>
+<li><a class="changelang" href="#zh-Hans" data-lang-path="js/lang/zh-cn.json">简体中文</a></li>
+<li><a class="changelang" href="#ja" data-lang-path="js/lang/jp.json">日本語</a></li>
+<li><a class="changelang" href="#ko" data-lang-path="js/lang/ko.json">한국의</a></li>
 </ul>
 </li>
 </ul>
@@ -134,7 +135,7 @@ THE SOFTWARE.
 <div class="container">
 <p><b lang="en">Disclaimer:</b>
 <span lang="en">Use this at your own risk, I don't respond if you lose anything while you use it, even the computer get exploded. :)</span></p>
-<p>Minecraft Server Status Checker Front-End V2.1 &copy; 2014 <a href="https://github.com/JLChnToZ">Jeremy Lam (JLChnToZ)</a>.
+<p>Minecraft Server Status Checker Front-End V2.2 &copy; 2014 <a href="https://github.com/JLChnToZ">Jeremy Lam (JLChnToZ)</a>.
 Created with <span class="glyphicon glyphicon-heart"></span> in <a href="http://hkcdc.org/"><span class="icon-hkcdc"></span></a>.
 This page is is not affiliated with <a href="http://mojang.com/">Mojang AB</a>.
 Minecraft content and materials are trademarks and copyrights of Mojang AB or its licensors. All rights reserved.</p>

@@ -1,4 +1,4 @@
-/* Minecraft Server Status Checker V2.0
+/* Minecraft Server Status Checker V2.2
 
 Copyright (c) 2014 Jeremy Lam (JLChnToZ)
 
@@ -32,10 +32,12 @@ $(function() {
     if (history.pushState && newstate) {
       var host = $("#id_host").val(),
         port = $("#id_port").val();
-      history.pushState({
+      var _state = {
         host: host,
         port: port
-      }, 'request: ' + host + ':' + port, '?' + host + ':' + port);
+      };
+      if(!_.isEqual(history.state, _state))
+        history.pushState(_state, 'request: ' + host + ':' + port, '?' + host + ':' + port);
     }
     $("#querybutton").button('loading');
     var called = false;
@@ -137,7 +139,11 @@ $(function() {
     onSubmit($(this), true);
   });
   
-  $(".changelang").click(function(e) {
+  $(".changelang").each(function() {
+    var $this = $(this), langcode = $this.attr("href").substring(1);
+    if(lang.defaultLang != langcode)
+      lang.dynamic(langcode, $this.attr("data-lang-path"));
+  }).click(function(e) {
     e.preventDefault();
     lang.change($(this).attr("href").substring(1));
   });
@@ -148,14 +154,7 @@ $(function() {
 
   if (searchquery && searchquery.length > 1) {
     var q = autoload(searchquery.substring(1));
-    if(history.replaceState) history.replaceState({
-      host: q.host,
-      port: q.port ? q.port : 25565
-    }, 'request: ' + q.host + ':' + q.port, '?' + q.host + ':' + q.port);
+    if(history.replaceState)
+      history.replaceState(q, 'request: ' + q.host + ':' + q.port, '?' + q.host + ':' + q.port);
   }
-  
-  lang.dynamic('zh-Hant', 'js/lang/zh-tw.json');
-  lang.dynamic('zh-Hans', 'js/lang/zh-cn.json');
-  lang.dynamic('ja', 'js/lang/jp.json');
-  lang.dynamic('ko', 'js/lang/ko.json');
 });
