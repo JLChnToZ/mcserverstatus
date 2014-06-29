@@ -42,7 +42,7 @@ body {
 .player {
   display: inline-block;
   text-align: center;
-  width: 10%;
+  width: 100px;
   height: 130px;
   padding: 5px;
   word-wrap: break-word;
