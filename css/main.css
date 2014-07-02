@@ -25,6 +25,11 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
+  padding-top: 80px;
+}
+
+@media screen and (max-width: 768px) {
+    body { padding-top: 60px; }
 }
 
 #players {

@@ -44,7 +44,7 @@ $(function() {
     $(".info").fadeOut("slow", function() {
       if (!called) called = true;
       else return;
-      $(".val, #players, #pluginscontent0, #pluginscontent1, #pluginscontent2").empty();
+      $(".val, #players, #pluginscontent").empty();
       $("#servericon, .nfo, #infoplayers, #pluginscontent0, #pluginscontent1, #pluginscontent2").hide();
       $("#noplugins, #noplayers").show();
       done = 0;
@@ -69,10 +69,10 @@ $(function() {
       showcontent("#gametype", x.gametype, -1);
       if (x.plugins && x.plugins.length > 0) {
         $("#noplugins").hide();
-        $("#pluginscontent0, #pluginscontent1, #pluginscontent2").show();
+        $("#pluginscontent").show();
         var arr = x.plugins.split(";");
         for (var i = 0; i < arr.length; i++)
-        $("#pluginscontent" + (i % 3)).append($("<li></li>").text(arr[i]).hide().delay(i * 100).fadeIn("slow"));
+        $("#pluginscontent").append($("<li></li>").addClass("col-xs-12 col-sm-6 col-lg-4").text(arr[i]).hide().delay(i * 100).fadeIn("slow"));
       }
       if (x.icon && x.icon.length > 0) $("#servericon").attr("src", x.icon).fadeIn("slow");
       if (x.player_count || x.player_max || x.player_count === 0 || x.player_max === 0) {

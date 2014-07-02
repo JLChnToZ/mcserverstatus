@@ -1,145 +1,161 @@
 <!DOCTYPE html>
 <!--
-Minecraft Server Status Checker V2.2
-
-Copyright (c) 2014 Jeremy Lam (JLChnToZ)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
--->
+  Minecraft Server Status Checker V2.2
+  
+  Copyright (c) 2014 Jeremy Lam (JLChnToZ)
+  
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+  
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+  
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  THE SOFTWARE.
+  -->
 <HTML>
-<Head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title lang="en">Minecraft Server Status Checker V2.2</title>
-<!--[if gt IE 7]><!-->
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/pace/0.4.17/pace.js"></script>
-<!--<![endif]-->
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="bower_components/jquery-lang-js/js/jquery-lang.js"></script>
-<script type="text/javascript" src="js/skin.js"></script>
-<script type="text/javascript" src="js/mccolor.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
-<link type="text/css" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.min.css" />
-<link type="text/css" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap-theme.min.css" />
-<link type="text/css" rel="stylesheet" href="bower_components/octicons/octicons/octicons.css">
-<link type="text/css" rel="stylesheet" href="css/pace.css" />
-<link type="text/css" rel="stylesheet" href="css/main.css" />
-<link type="text/css" rel="stylesheet" href="css/icon.css" />
-</Head>
-<Body role="document">
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-<div class="container-fluid">
-<a class="navbar-brand" href="#" lang="en">Minecraft Server Status Checker V2.2</a>
-<div class="collapse navbar-collapse">
-<ul class="nav navbar-nav">
-<li><a href="http://minecraft.net/" lang="en">Minecraft Official Site</a></li>
-<li><a href="http://hkcdc.org/"><span class="icon-hkcdc"></span></a></li>
-<li><a href="https://github.com/JLChnToZ/mcserverstatus">Fork me on <span class="octicon octicon-mark-github"></span></a></li>
-</ul>
-<ul class="nav navbar-nav navbar-right">
-<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#language">Language <b class="caret"></b></a>
-<ul class="dropdown-menu">
-<li><a class="changelang" href="#en">English</a></li>
-<li><a class="changelang" href="#zh-Hant" data-lang-path="js/lang/zh-tw.json">繁體中文</a></li>
-<li><a class="changelang" href="#zh-Hans" data-lang-path="js/lang/zh-cn.json">简体中文</a></li>
-<li><a class="changelang" href="#ja" data-lang-path="js/lang/jp.json">日本語</a></li>
-<li><a class="changelang" href="#ko" data-lang-path="js/lang/ko.json">한국의</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-</div>
-
-<div class="navbar navbar-inverse" role="navigation"></div>
-
-<div class="container" role="main">
-<form id="requestform">
-<div class="row">
-<div class="col-xs-3"><label class="control-label" for="id_host" lang="en">URL / IP Address</label></div>
-<div class="col-xs-2"><label class="control-label" for="id_port" lang="en">Port</label></div></div>
-<div class="row">
-<div class="col-xs-3">
-<input class="form-control" type="text" name="host" id="id_host" placeholder="192.168.0.1/server.example.com" /></div>
-<div class="col-xs-2">
-<input class="form-control" type="number" name="port" id="id_port" value="25565" placeholder="25565" /></div>
-<div class="col-xs-1">
-<button class="btn btn-primary" type="submit" data-loading-text="Please wait" id="querybutton"><span class="glyphicon glyphicon-search"></span>
-<span lang="en">Check</span></button></div>
-</div>
-</form>
-<br />
-<div class="panel panel-primary info">
-<div class="panel-heading">
-<h3 class="panel-title"><span class="glyphicon glyphicon-info-sign"></span>
-<span id="infotitle" lang="en">Server</span> <span lang="en">Information</span></h3>
-</div>
-<div class="panel-body">
-<img id="servericon" alt="icon" />
-<div id="motd" class="nfo"><span class="val" style="background: #444"></span></div>
-<div id="sversion" class="nfo"><b lang="en">Version: </b><span class="val"></span></div>
-<div id="map" class="nfo"><b lang="en">Map: </b><span class="val"></span></div>
-<div id="gametype" class="nfo"><b lang="en">Game mode: </b><span class="val"></span></div>
-<div id="latency" class="nfo" lang="en"><b lang="en">Latency: </b><span class="val"></span><span lang="en">ms</span></div>
-</div>
-</div>
-
-<div class="panel panel-info info">
-<div class="panel-heading">
-<h3 class="panel-title" lang="en"><span class="glyphicon glyphicon-user"></span>
-<span lang="en">Online Players</span>
-<span id="infoplayers">(<span class="text-danger" id="pmax" lang="en">Full</span><span id="pcount">?</span><span lang="en">, total</span><span id="pcountmax">?</span>)</span></h3>
-</div>
-<div class="panel-body">
-<div id="noplayers" class="text-danger" lang="en">Server did not provide player info.</div>
-<div id="players"></div>
-</div>
-</div>
-
-<div class="panel panel-info info">
-<div class="panel-heading">
-<h3 class="panel-title"><span class="glyphicon glyphicon-cog"></span>
-<span lang="en">Plugin List</span></h3>
-</div>
-<div class="panel-body">
-<div id="noplugins" class="text-danger" lang="en">Server did not provide plugins info, or no plugins installed.</div>
-<div class="row">
-<div class="col-xs-4"><ul id="pluginscontent0"></ul></div>
-<div class="col-xs-4"><ul id="pluginscontent1"></ul></div>
-<div class="col-xs-4"><ul id="pluginscontent2"></ul></div>
-</div>
-</div>
-</div>
-</div>
-<hr />
-<footer role="contentinfo">
-<div class="container">
-<p><b lang="en">Disclaimer:</b>
-<span lang="en">Use this at your own risk, I don't respond if you lose anything while you use it, even the computer get exploded. :)</span></p>
-<p>Minecraft Server Status Checker Front-End V2.2 &copy; 2014 <a href="https://github.com/JLChnToZ">Jeremy Lam (JLChnToZ)</a>.
-Created with <span class="glyphicon glyphicon-heart"></span> in <a href="http://hkcdc.org/"><span class="icon-hkcdc"></span></a>.
-This page is is not affiliated with <a href="http://mojang.com/">Mojang AB</a>.
-Minecraft content and materials are trademarks and copyrights of Mojang AB or its licensors. All rights reserved.</p>
-</div>
-</footer>
-</Body>
+  <Head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title lang="en">Minecraft Server Status Checker V2.2</title>
+    <!--[if gt IE 7]><!-->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/pace/0.4.17/pace.js"></script>
+    <!--<![endif]-->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="bower_components/jquery-lang-js/js/jquery-lang.js"></script>
+    <script type="text/javascript" src="js/skin.js"></script>
+    <script type="text/javascript" src="js/mccolor.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <link type="text/css" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="bower_components/octicons/octicons/octicons.css">
+    <link type="text/css" rel="stylesheet" href="css/pace.css" />
+    <link type="text/css" rel="stylesheet" href="css/theme.css" />
+    <link type="text/css" rel="stylesheet" href="css/main.css" />
+    <link type="text/css" rel="stylesheet" href="css/icon.css" />
+  </Head>
+  <Body role="document">
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#" lang="en">Minecraft Server Status Checker V2.2</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="http://minecraft.net/" lang="en">Minecraft Official Site</a></li>
+            <li><a href="http://hkcdc.org/"><span class="icon-hkcdc"></span></a></li>
+            <li><a href="https://github.com/JLChnToZ/mcserverstatus">Fork me on <span class="octicon octicon-mark-github"></span></a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#language">Language <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a class="changelang" href="#en">English</a></li>
+                <li><a class="changelang" href="#zh-Hant" data-lang-path="js/lang/zh-tw.json">繁體中文</a></li>
+                <li><a class="changelang" href="#zh-Hans" data-lang-path="js/lang/zh-cn.json">简体中文</a></li>
+                <li><a class="changelang" href="#ja" data-lang-path="js/lang/jp.json">日本語</a></li>
+                <li><a class="changelang" href="#ko" data-lang-path="js/lang/ko.json">한국의</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container" role="main">
+      <form id="requestform" class="form-inline" role="form">
+        <div class="form-group">
+          <div class="col-xs-6 col-sm-5 col-lg-4">
+            <label class="sr-only" for="id_host" lang="en">URL / IP Address</label>
+            <input class="form-control" type="text" name="host" id="id_host" placeholder="192.168.0.1/server.example.com" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-3 col-sm-2 col-lg-1">
+            <label class="sr-only" for="id_port" lang="en">Port</label>
+            <input class="form-control" type="number" name="port" id="id_port" value="25565" placeholder="25565" min="1" max="65535" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-3 col-sm-2 col-lg-1">
+            <button class="btn btn-primary" type="submit" data-loading-text="Please wait" id="querybutton"><span class="glyphicon glyphicon-search"></span>
+            <span lang="en">Check</span></button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <hr />
+    <div class="container" role="main">
+      <div class="panel panel-primary info">
+        <div class="panel-heading">
+          <h3 class="panel-title"><span class="glyphicon glyphicon-info-sign"></span>
+            <span id="infotitle" lang="en">Server</span> <span lang="en">Information</span>
+          </h3>
+        </div>
+        <div class="panel-body">
+          <img id="servericon" alt="icon" />
+          <div id="motd" class="nfo"><span class="val"></span></div>
+          <div id="sversion" class="nfo"><b lang="en">Version: </b><span class="val"></span></div>
+          <div id="map" class="nfo"><b lang="en">Map: </b><span class="val"></span></div>
+          <div id="gametype" class="nfo"><b lang="en">Game mode: </b><span class="val"></span></div>
+          <div id="latency" class="nfo" lang="en"><b lang="en">Latency: </b><span class="val"></span><span lang="en">ms</span></div>
+        </div>
+      </div>
+      <div class="panel panel-info info">
+        <div class="panel-heading">
+          <h3 class="panel-title" lang="en"><span class="glyphicon glyphicon-user"></span>
+            <span lang="en">Online Players</span>
+            <span id="infoplayers">(<span class="text-danger" id="pmax" lang="en">Full</span><span id="pcount">?</span>
+            <span lang="en">, total</span><span id="pcountmax">?</span>)</span>
+          </h3>
+        </div>
+        <div class="panel-body">
+          <div id="noplayers" class="text-danger" lang="en">Server did not provide player info.</div>
+          <div id="players"></div>
+        </div>
+      </div>
+      <div class="panel panel-info info">
+        <div class="panel-heading">
+          <h3 class="panel-title"><span class="glyphicon glyphicon-cog"></span>
+            <span lang="en">Plugin List</span>
+          </h3>
+        </div>
+        <div class="panel-body">
+          <div id="noplugins" class="text-danger" lang="en">Server did not provide plugins info, or no plugins installed.</div>
+          <div class="row">
+            <ul id="pluginscontent"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <footer role="contentinfo">
+      <div class="container">
+        <p><b lang="en">Disclaimer:</b>
+          <span lang="en">Use this at your own risk, I don't respond if you lose anything while you use it, even the computer get exploded. :)</span>
+        </p>
+        <p>Minecraft Server Status Checker Front-End V2.2 &copy; 2014 <a href="https://github.com/JLChnToZ">Jeremy Lam (JLChnToZ)</a>.
+          Created with <span class="glyphicon glyphicon-heart"></span> in <a href="http://hkcdc.org/"><span class="icon-hkcdc"></span></a>.
+          This page is is not affiliated with <a href="http://mojang.com/">Mojang AB</a>.
+          Minecraft content and materials are trademarks and copyrights of Mojang AB or its licensors. All rights reserved.
+        </p>
+      </div>
+    </footer>
+  </Body>
 </HTML>
