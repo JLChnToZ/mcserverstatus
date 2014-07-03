@@ -45,7 +45,7 @@ $(function() {
       if (!called) called = true;
       else return;
       $(".val, #players, #pluginscontent").empty();
-      $("#servericon, .nfo, #infoplayers, #pluginscontent0, #pluginscontent1, #pluginscontent2").hide();
+      $("#servericon, .nfo, #infoplayers, #pluginscontent").hide();
       $("#noplugins, #noplayers").show();
       done = 0;
       tryRequest(form.serialize(), 0, 0);
@@ -72,7 +72,8 @@ $(function() {
         $("#pluginscontent").show();
         var arr = x.plugins.split(";");
         for (var i = 0; i < arr.length; i++)
-        $("#pluginscontent").append($("<li></li>").addClass("col-xs-12 col-sm-6 col-lg-4").text(arr[i]).hide().delay(i * 100).fadeIn("slow"));
+          $("#pluginscontent").append($("<li></li>").addClass("col-xs-12 col-sm-6 col-lg-4").text(arr[i])
+            .hide().delay(i * 100).fadeIn("slow"));
       }
       if (x.icon && x.icon.length > 0) $("#servericon").attr("src", x.icon).fadeIn("slow");
       if (x.player_count || x.player_max || x.player_count === 0 || x.player_max === 0) {
@@ -84,12 +85,14 @@ $(function() {
       if (x.players && x.players.length > 0) {
         $("#noplayers").hide();
         $("#players").fadeOut("fast").empty().fadeIn("fast", function() {
-          for (var i = 0; i < x.players.length; i++) {
-            var skin = $("<div></div>").addClass("mc-skin").attr("data-minecraft-username", x.players[i]),
-              name = $("<span></span>").addClass("label label-default").text(x.players[i]).minecraftFormat(15),
-              playerdiv = $("<div></div>").addClass("player").append(skin).append(name).hide().delay(i * 100).fadeIn("slow");
-            $("#players").append(playerdiv);
-          }
+          for (var i = 0; i < x.players.length; i++)
+            $("#players").append(
+              $("<div></div>").addClass("player").append(
+                $("<div></div>").addClass("mc-skin").attr("data-minecraft-username", x.players[i])
+              ).append(
+                $("<span></span>").addClass("label label-default").text(x.players[i]).minecraftFormat(15)
+              ).hide().delay(i * 100).fadeIn("slow")
+            );
           $(".mc-skin").minecraftSkin({
             scale: 2,
             hat: true
