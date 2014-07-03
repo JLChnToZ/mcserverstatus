@@ -85,8 +85,7 @@
       canvas.setAttribute('height', 17.6 * scale);
       canvas.setAttribute('class', 'model');
 
-      $this.append(canvas);
-      $this.append(scratchCanv);
+      $this.hide().append(canvas).append(scratchCanv).fadeIn('slow');
 
       var skin = new Image();
 
@@ -141,8 +140,7 @@
       canvas.setAttribute('height', 44.8 * scale);
       canvas.setAttribute('class', 'model');
 
-      $this.append(canvas);
-      $this.append(scratchCanv);
+      $this.hide().append(canvas).append(scratchCanv).fadeIn('slow');
 
       var skin = new Image();
 
