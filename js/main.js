@@ -54,6 +54,10 @@ $(function() {
       }, 2500);
     });
   }
+  
+  function $create(elm) {
+    return $(document.createElement(elm));
+  }
 
   function tryRequest(form, mode, trial) {
     $.getJSON("json.php", form + "&mode=" + allmodes[mode][trial], function(x, h, r) {
@@ -72,7 +76,7 @@ $(function() {
         $("#pluginscontent").show();
         var arr = x.plugins.split(";");
         for (var i = 0; i < arr.length; i++)
-          $("#pluginscontent").append($("<li></li>").addClass("col-xs-12 col-sm-6 col-lg-4").text(arr[i])
+          $("#pluginscontent").append($create('li').addClass("col-xs-12 col-sm-6 col-lg-4").text(arr[i])
             .hide().delay(i * 100).fadeIn("slow"));
       }
       if (x.icon && x.icon.length > 0) $("#servericon").attr("src", x.icon).fadeIn("slow");
@@ -87,10 +91,10 @@ $(function() {
         $("#players").fadeOut("fast").empty().fadeIn("fast", function() {
           for (var i = 0; i < x.players.length; i++)
             $("#players").append(
-              $("<div></div>").addClass("player").append(
-                $("<div></div>").addClass("mc-skin").attr("data-minecraft-username", x.players[i])
+              $create('div').addClass("player").append(
+                $create('div').addClass("mc-skin").data("minecraft-username", x.players[i])
               ).append(
-                $("<span></span>").addClass("label label-default").text(x.players[i]).minecraftFormat(15)
+                $create('span').addClass("label label-default").text(x.players[i]).minecraftFormat(15)
               ).hide().delay(i * 100).fadeIn("slow")
             );
           $(".mc-skin").minecraftSkin({
@@ -145,7 +149,7 @@ $(function() {
   $(".changelang").each(function() {
     var $this = $(this), langcode = $this.attr("href").substring(1);
     if(lang.defaultLang != langcode)
-      lang.dynamic(langcode, $this.attr("data-lang-path"));
+      lang.dynamic(langcode, $this.data("lang-path"));
   }).click(function(e) {
     e.preventDefault();
     lang.change($(this).attr("href").substring(1));

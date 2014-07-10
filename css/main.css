@@ -54,12 +54,6 @@ body {
   vertical-align: top;
 }
 
-#servericon {
-  display: none;
-  float: left;
-  margin: 5px;
-}
-
 #noplugins, #noplayers {
   text-align: center;
 }

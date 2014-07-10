@@ -40,7 +40,7 @@
           settings.draw = 'model';
 
         // Request the data
-        methods.requestData('http://s3.amazonaws.com/MinecraftSkins/' + settings.username + '.png', $this, settings);
+        methods.requestData(settings.username, $this, settings);
       });
     },
     buildImage: function (imgData, $this, settings) {
@@ -62,12 +62,10 @@
         methods.draw_head(canvas, scratch, settings.scale, settings.hat, $this, imgData);
     },
     requestData: function (username, $this, settings) {
-      var result;
-      var yql = 'http://query.yahooapis.com/v1/public/yql?q=' + encodeURIComponent('SELECT * FROM data.uri WHERE url = "' + username + '"') + '&format=json&callback=?';
-
-      $.getJSON(yql, function (data, result) {
-        if (data.query.results.url)
-          methods.buildImage(data.query.results.url, $this, settings);
+      $.get('skin_proxy.php', {
+        username: username
+      }, function(x, h, r) {
+        methods.buildImage(x, $this, settings);
       });
     },
     draw_head: function (canvas, scratchCanv, scale, hat, $this, imgData) {
