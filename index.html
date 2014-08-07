@@ -42,7 +42,7 @@
     <link type="text/css" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.min.css" />
     <link type="text/css" rel="stylesheet" href="bower_components/octicons/octicons/octicons.css">
     <link type="text/css" rel="stylesheet" href="css/pace.css" />
-    <link type="text/css" rel="stylesheet" href="css/theme.css" />
+    <link type="text/css" rel="stylesheet" href="css/theme.css" id="themecss" />
     <link type="text/css" rel="stylesheet" href="css/main.css" />
     <link type="text/css" rel="stylesheet" href="css/icon.css" />
     <!--[if lt IE 9]>
@@ -78,6 +78,11 @@
               <li><a class="changelang" href="#ko" data-lang-path="js/lang/ko.json">한국의</a></li>
             </ul>
           </li>
+            <li class="dropdown" id="theme-dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> <span lang="en">Themes</span><b class="caret"></b></a>
+              <ul class="dropdown-menu" id="theme-select">
+              </ul>
+            </li>
         </ul>
       </div>
     </div>

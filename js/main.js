@@ -27,7 +27,19 @@ $(function() {
     done = 0,
     lang = new Lang('en'),
     searchquery = location.search;
+    
+  var supports_storage = (function() {
+    try {
+      return 'localStorage' in window && window['localStorage'] !== null;
+    } catch (e) {
+      return false;
+    }
+  })();
 
+  function set_theme(theme) {
+    $('link#themecss').attr('href', theme);
+  }
+  
   function onSubmit(form, newstate) {
     if (history.pushState && newstate) {
       var host = $("#id_host").val(),
@@ -150,11 +162,50 @@ $(function() {
     var $this = $(this), langcode = $this.attr("href").substring(1);
     if(lang.defaultLang != langcode)
       lang.dynamic(langcode, $this.data("lang-path"));
-  }).click(function(e) {
+  });
+  
+  $('body')
+  .on('click', '.change-style-menu-item a', function(e) {
+    e.preventDefault();
+    set_theme($(this).data("css"));
+    if(supports_storage)
+      window.localStorage.theme = $(this).data("css");
+  })
+  .on('click', '.changelang', function(e){
     e.preventDefault();
     lang.change($(this).attr("href").substring(1));
+  })
+  .tooltip({
+    selector: ".change-style-menu-item",
+    placement: "left"
   });
+  
+  $.get("http://api.bootswatch.com/3/", function (data) {
+    var themes = data.themes;
+    $.each(themes, function() {
+      $("#theme-select").append(
+        $("<li></li>")
+        .addClass("change-style-menu-item")
+        .attr({
+          title: this.description
+        })
+        .append(
+          $("<a></a>")
+          .data("css", this.cssMin)
+          .append(this.name)
+          .attr({
+            href: "###"
+          })
+        )
+      );
+    });
+  }, "json");
 
+  if(supports_storage) {
+    var t = window.localStorage.theme;
+    if(t) set_theme(t);
+  }
+  
   window.onpopstate = function(e) {
     autoload(e.state);
   };
