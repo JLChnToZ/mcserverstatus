@@ -1,5 +1,5 @@
 <?php
-// Minecraft Server Status Checker V2.2
+// Minecraft Server Status Checker V2.3
 //
 // Copyright (c) 2014 Jeremy Lam (JLChnToZ)
 //
