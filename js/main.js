@@ -58,7 +58,7 @@ $(function() {
     $(".info, #noresponse").fadeOut("slow", function() {
       if (!called) called = true;
       else return;
-      $(".val, #players, #pluginscontent").empty();
+      $(".val, #players, #pluginscontent, #svadditional").empty();
       $("#servericon, .nfo, #infoplayers, #pluginscontent").hide();
       $("#noplugins, #noplayers").show();
       done = 0;
@@ -101,16 +101,16 @@ $(function() {
         $("#pcountmax").text(x.player_max ? x.player_max : '?');
       }
       if (x.players && x.players.length > 0) {
-        $("#noplayers").hide();
-        $("#players").fadeOut("fast").empty().fadeIn("fast", function() {
-          var isPlayerData = true, i;
-          for (i = 0; i < x.players.length; i++) // Check if those are really player data
-            if(!/^\w{1,16}$/.test(x.players[i])) {
-              isPlayerData = false;
-              break;
-            }
-          if(isPlayerData) {
-            for (i = 0; i < x.players.length; i++)
+        var isPlayerData = true;
+        for (var i = 0; i < x.players.length; i++) // Check if those are really player data
+          if(!/^\w{1,16}$/.test(x.players[i])) {
+            isPlayerData = false;
+            break;
+          }
+        if(isPlayerData) {
+          $("#noplayers").hide();
+          $("#players").fadeOut("fast").empty().fadeIn("fast", function() {
+            for (var i = 0; i < x.players.length; i++)
               $("#players").append(
                 $create('div').addClass("player").append(
                   $create('div').addClass("mc-skin").data("minecraft-username", x.players[i])
@@ -122,12 +122,13 @@ $(function() {
               scale: 2,
               hat: true
             });
-          } else // Non-player data is shown
-            for (i = 0; i < x.players.length; i++)
-              $("#players").append(
-                $create('span').addClass("moreinfo").text(x.players[i]).minecraftFormat()
-                .hide().delay(i * 100).fadeIn("slow")
-              );
+          });
+        } else // Non-player data is shown
+          $("#svadditional").fadeOut("fast").empty().fadeIn("fast", function() {
+            for (var i = 0; i < x.players.length; i++)
+              $("#svadditional").append(
+              $create('div').addClass("moreinfo").text(x.players[i]).minecraftFormat()
+              .hide().delay(i * 100).fadeIn("slow")
         });
       }
       haveResponse = true;
