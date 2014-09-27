@@ -25,6 +25,7 @@ $(function() {
     ["full_query", "basic_query"]
   ],
     done = 0,
+    haveResponse = false,
     lang = new Lang('en'),
     searchquery = location.search;
     
@@ -53,6 +54,7 @@ $(function() {
     }
     $("#querybutton").button('loading');
     var called = false;
+    haveResponse = false;
     $(".info, #noresponse").fadeOut("slow", function() {
       if (!called) called = true;
       else return;
