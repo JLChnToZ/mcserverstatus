@@ -44,19 +44,22 @@ body {
   height: 100px;
 }
 
+.player, .moreinfo {
+  word-wrap: break-word;
+}
+
 .player {
   display: inline-block;
   text-align: center;
   width: 100px;
   height: 130px;
   padding: 5px;
-  word-wrap: break-word;
   vertical-align: top;
 }
 
 .moreinfo {
   width: 100%;
-  word-wrap: break-word;
+  display: block;
 }
 
 #noplugins, #noplayers, #noresponse {
