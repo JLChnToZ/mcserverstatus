@@ -127,8 +127,9 @@ $(function() {
           $("#svadditional").fadeOut("fast").empty().fadeIn("fast", function() {
             for (var i = 0; i < x.players.length; i++)
               $("#svadditional").append(
-              $create('div').addClass("moreinfo").text(x.players[i]).minecraftFormat()
-              .hide().delay(i * 100).fadeIn("slow")
+                $create('div').addClass("moreinfo").text(x.players[i]).minecraftFormat()
+                .hide().delay(i * 100).fadeIn("slow")
+              );
         });
       }
       haveResponse = true;
