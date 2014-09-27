@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Minecraft Server Status Checker V2.3
+  Minecraft Server Status Checker V2.4
   
   Copyright (c) 2014 Jeremy Lam (JLChnToZ)
   
@@ -27,18 +27,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimal-ui">
-    <title lang="en">Minecraft Server Status Checker V2.3</title>
+    <title lang="en">Minecraft Server Status Checker V2.4</title>
     <!--[if gt IE 7]><!-->
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/pace/0.4.17/pace.js"></script>
     <!--<![endif]-->
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="bower_components/jquery-lang-js/js/jquery-lang.js"></script>
-    <script type="text/javascript" src="js/skin.js"></script>
-    <script type="text/javascript" src="js/mccolor.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
     <link type="text/css" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.min.css" />
     <link type="text/css" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
     <link type="text/css" rel="stylesheet" href="css/pace.css" />
@@ -60,7 +52,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <span class="navbar-brand" lang="en">Minecraft Server Status Checker V2.3</span>
+          <span class="navbar-brand" lang="en">Minecraft Server Status Checker V2.4</span>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -112,6 +104,7 @@
     </div>
     <hr />
     <div class="container" role="main">
+      <div id="noresponse" class="text-danger" lang="en">The server has no response, maybe it is down.</div>
       <div class="panel panel-primary info">
         <div class="panel-heading">
           <h3 class="panel-title"><span class="fa fa-info-circle"></span>
@@ -166,12 +159,21 @@
         <p><b lang="en">Disclaimer:</b>
           <span lang="en">Use this at your own risk, I don't respond if you lose anything while you use it, even the computer get exploded. :)</span>
         </p>
-        <p>Minecraft Server Status Checker Front-End V2.3 &copy; 2014 <a href="https://github.com/JLChnToZ">Jeremy Lam (JLChnToZ)</a>.
+        <p>Minecraft Server Status Checker Front-End V2.4 &copy; 2014 <a href="https://github.com/JLChnToZ">Jeremy Lam (JLChnToZ)</a>.
           Created with <span class="fa fa-heart"></span> in <a href="http://hkcdc.org/"><span class="icon-hkcdc"></span></a>.
           This page is is not affiliated with <a href="http://mojang.com/">Mojang AB</a>.
           Minecraft content and materials are trademarks and copyrights of Mojang AB or its licensors. All rights reserved.
         </p>
       </div>
     </footer>
+    <!-- Scripts -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="bower_components/jquery-lang-js/js/jquery-lang.js"></script>
+    <script type="text/javascript" src="js/skin.js"></script>
+    <script type="text/javascript" src="js/mccolor.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
   </Body>
 </HTML>

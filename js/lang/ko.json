@@ -1,6 +1,6 @@
 {
 	"token": {
-		"Minecraft Server Status Checker V2.3": "Minecraft 서버 상태 검사기 V2.3",
+		"Minecraft Server Status Checker V2.4": "Minecraft 서버 상태 검사기 V2.4",
 		"Themes": "테마",
 		"Minecraft Official Site": "Minecraft 공식 사이트",
 		"URL / IP Address": "URL / IP 주소",
@@ -21,7 +21,8 @@
 		"Plugin List": "플러그인 목록",
 		"Server did not provide plugins info, or no plugins installed.": "플러그인을 설치하지 않거나 정보가 공개되지 않았습니다.",
 		"Disclaimer:": "면책 조항: ",
-		"Use this at your own risk, I don't respond if you lose anything while you use it, even the computer get exploded. :)": "본인은 결코이 검색기의 가용성을 보장하지 않습니다. 만약이 검색기를 사용에 대한 모든 직접 인 또는 간접적 인 손실을 구성하여 본인은 모든 담당하지 않습니다."
+		"Use this at your own risk, I don't respond if you lose anything while you use it, even the computer get exploded. :)": "본인은 결코이 검색기의 가용성을 보장하지 않습니다. 만약이 검색기를 사용에 대한 모든 직접 인 또는 간접적 인 손실을 구성하여 본인은 모든 담당하지 않습니다.",
+		"The server has no response, maybe it is down.": "서버는 리스폰스를 아마 가지고 있지 않습니다, 그것은 오프라인입니다."
 	},
 	"regex": []
 }

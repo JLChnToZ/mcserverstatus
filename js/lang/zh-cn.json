@@ -1,6 +1,6 @@
 {
 	"token": {
-		"Minecraft Server Status Checker V2.3": "Minecraft 服务器状态查询 V2.3",
+		"Minecraft Server Status Checker V2.4": "Minecraft 服务器状态查询 V2.4",
 		"Themes": "主题",
 		"Minecraft Official Site": "Minecraft 官方网站",
 		"URL / IP Address": "网址 / IP 地址",
@@ -21,7 +21,8 @@
 		"Plugin List": "插件列表",
 		"Server did not provide plugins info, or no plugins installed.": "服务器没有插件，或者没有公开。",
 		"Disclaimer:": "免责声明：",
-		"Use this at your own risk, I don't respond if you lose anything while you use it, even the computer get exploded. :)": "本人并不保证这个查询器的可用性。如果因为使用这个查询器而构成任何直接或间接的损失，本人一概不负责。"
+		"Use this at your own risk, I don't respond if you lose anything while you use it, even the computer get exploded. :)": "本人并不保证这个查询器的可用性。如果因为使用这个查询器而构成任何直接或间接的损失，本人一概不负责。",
+		"The server has no response, maybe it is down.": "服务器没有回应，可能没有上线。"
 	},
 	"regex": []
 }

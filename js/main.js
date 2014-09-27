@@ -1,4 +1,4 @@
-/* Minecraft Server Status Checker V2.3
+/* Minecraft Server Status Checker V2.4
 
 Copyright (c) 2014 Jeremy Lam (JLChnToZ)
 
@@ -53,7 +53,7 @@ $(function() {
     }
     $("#querybutton").button('loading');
     var called = false;
-    $(".info").fadeOut("slow", function() {
+    $(".info, #noresponse").fadeOut("slow", function() {
       if (!called) called = true;
       else return;
       $(".val, #players, #pluginscontent").empty();
@@ -101,20 +101,34 @@ $(function() {
       if (x.players && x.players.length > 0) {
         $("#noplayers").hide();
         $("#players").fadeOut("fast").empty().fadeIn("fast", function() {
-          for (var i = 0; i < x.players.length; i++)
-            $("#players").append(
-              $create('div').addClass("player").append(
-                $create('div').addClass("mc-skin").data("minecraft-username", x.players[i])
-              ).append(
-                $create('span').addClass("label label-default").text(x.players[i]).minecraftFormat(15)
-              ).hide().delay(i * 100).fadeIn("slow")
-            );
-          $(".mc-skin").minecraftSkin({
-            scale: 2,
-            hat: true
-          });
+          var isPlayerData = true, i;
+          for (i = 0; i < x.players.length; i++) // Check if those are really player data
+            if(!/^\w{1,16}$/.test(x.players[i])) {
+              isPlayerData = false;
+              break;
+            }
+          if(isPlayerData) {
+            for (i = 0; i < x.players.length; i++)
+              $("#players").append(
+                $create('div').addClass("player").append(
+                  $create('div').addClass("mc-skin").data("minecraft-username", x.players[i])
+                ).append(
+                  $create('span').addClass("label label-default").text(x.players[i]).minecraftFormat()
+                ).hide().delay(i * 100).fadeIn("slow")
+              );
+            $(".mc-skin").minecraftSkin({
+              scale: 2,
+              hat: true
+            });
+          } else // Non-player data is shown
+            for (i = 0; i < x.players.length; i++)
+              $("#players").append(
+                $create('span').addClass("moreinfo").text(x.players[i]).minecraftFormat()
+                .hide().delay(i * 100).fadeIn("slow")
+              );
         });
       }
+      haveResponse = true;
     }).complete(function(x, s) {
       if (trial + 1 < allmodes[mode].length) setTimeout(function() {
         tryRequest(form, mode, trial + 1);
@@ -125,7 +139,11 @@ $(function() {
 
   function callDone() {
     done++;
-    if (done >= allmodes.length) $("#querybutton").button('reset');
+    if (done >= allmodes.length) {
+      $("#querybutton").button('reset');
+      if(!haveResponse)
+        $("#noresponse").fadeIn("slow");
+    }
   }
 
   function showcontent(id, content, formatColor) {

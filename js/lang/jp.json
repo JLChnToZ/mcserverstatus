@@ -1,6 +1,6 @@
 {
 	"token": {
-		"Minecraft Server Status Checker V2.3": "Minecraft ｻｰﾊﾞｰｽﾃｰﾀｽﾁｪｯｶｰ V2.3",
+		"Minecraft Server Status Checker V2.4": "Minecraft ｻｰﾊﾞｰｽﾃｰﾀｽﾁｪｯｶｰ V2.4",
 		"Themes": "ﾃｰﾏ",
 		"Minecraft Official Site": "Minecraft 公式ｻｲﾄ",
 		"URL / IP Address": "URL / IP ｱﾄﾞﾚｽ",
@@ -21,7 +21,8 @@
 		"Plugin List": "ﾌﾟﾗｸﾞｲﾝ一覧",
 		"Server did not provide plugins info, or no plugins installed.": "ﾌﾟﾗｸﾞｲﾝをｲﾝｽﾄｰﾙしない､または情報が公開されていませんでした｡",
 		"Disclaimer:": "免責事項：",
-		"Use this at your own risk, I don't respond if you lose anything while you use it, even the computer get exploded. :)": "本人は決してこの検索器のﾕｰｻﾞﾋﾞﾘﾃｨを保証しありません｡もしもこの検索器を使うのためいかなる直接なのあるいは間接的な損失を構成して､本人はすべて担当しません｡"
+		"Use this at your own risk, I don't respond if you lose anything while you use it, even the computer get exploded. :)": "本人は決してこの検索器のﾕｰｻﾞﾋﾞﾘﾃｨを保証しありません｡もしもこの検索器を使うのためいかなる直接なのあるいは間接的な損失を構成して､本人はすべて担当しません｡",
+		"The server has no response, maybe it is down.": "サーバーはレスポンスを恐らく持っていません、それはオフラインです。"
 	},
 	"regex": []
 }

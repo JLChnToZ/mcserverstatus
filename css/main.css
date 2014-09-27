@@ -54,10 +54,15 @@ body {
   vertical-align: top;
 }
 
-#noplugins, #noplayers {
+.moreinfo {
+  width: 100%;
+  word-wrap: break-word;
+}
+
+#noplugins, #noplayers, #noresponse {
   text-align: center;
 }
 
-#noplugins, #pmax, #infoplayers, .info {
+#noplugins, #pmax, #infoplayers, #noresponse, .info {
   display: none;
 }
