@@ -61,6 +61,11 @@ body {
   width: 100%;
 }
 
+#motd>.val>span, .moreinfo>span {
+  white-space: pre-wrap;
+  text-shadow: 0 0 3px #000;
+}
+
 #noplugins, #noplayers, #noresponse {
   text-align: center;
 }
